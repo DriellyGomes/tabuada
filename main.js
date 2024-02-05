@@ -1,4 +1,6 @@
 const botaoDispararTabuadaConsole = document.querySelector('.btn-console');
+const caixaEntradaTabuada= document.querySelector('#tabuada-number');
+
 
 botaoDispararTabuadaConsole.addEventListener('click', () => {
     const entradaUsuario = parseInt(document.querySelector('#tabuada-number').value);
@@ -10,6 +12,26 @@ botaoDispararTabuadaConsole.addEventListener('click', () => {
         console.log("Número inválido!Digite um número válido");
     }
 });
+// //mostrar a tabuada quando o evento clicar no enter acontecer
+// caixaEntradaTabuada.addEventListener('keyup', (e)=> {
+//     if (e.key === 'Enter') {
+//         validarentrada(caixaEntradaTabuada.value);
+//         mostrarTabuadaNoConsole(caixaEntradaTabuada.value);
+//         mostrarTabuadaDom(caixaEntradaTabuada.value);
+//     }
+// })
+
+caixaEntradaTabuada.addEventListener('keyup',verificarTecla);
+
+//Associando uma variável a um elemento e adicionando um evento, teremos disponiveis os dados do evento em si e os dados do elemento
+
+function verificarTecla(e){
+    if (e.key === 'Enter') {
+        validarentrada(this.value);
+        mostrarTabuadaNoConsole(this.value);
+        mostrarTabuadaDom(this.value);
+    }
+}
 
 function mostrarTabuadaNoConsole(numero) {
 
@@ -32,6 +54,12 @@ botaoDispararTabuadaDom.addEventListener('click', () => {
     const entradaUsuario = parseInt(document.querySelector('#tabuada-number').value);
     mostrarTabuadaDom(entradaUsuario);
 });
+
+function validarentrada(numero) {
+    if(isNaN(numero)){
+        return "Numero Invalido! digite um numero valido"
+    }
+}
 
 function mostrarTabuadaDom(numero) {
 
